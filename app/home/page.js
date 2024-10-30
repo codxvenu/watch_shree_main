@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 function Home() {
   const [data, setData] = useState([]);
   useEffect(()=>{
-    fetch("http://localhost:5000/product_list")
+    fetch("/product_list")
     .then((res) => res.json())
     .then((data) => {
         console.log(data);
