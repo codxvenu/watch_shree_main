@@ -135,11 +135,10 @@ app.get('/product_list', (req, res) => {
   db.query('SELECT * FROM items', (error, results) => {
     if (error) throw error;
     console.log(results);
-    res.send(results);
+    res.json(results); // Use res.json to explicitly send JSON
   });
-  
-  
 });
+
 
 app.post('/login', (req, res) => {
 
