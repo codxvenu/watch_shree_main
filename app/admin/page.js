@@ -37,7 +37,7 @@ function Admin() {
             img: img // URL of the image
         };
     
-        fetch("/admin/additem", {
+        fetch(process.env.url+"/api/admin/additem", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // Specify JSON content type

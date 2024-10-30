@@ -77,7 +77,7 @@ passport.deserializeUser((email, done) => {
       done(null, results[0]); // `results[0]` should be the full user object
   });
 });
-app.get('/profile', (req, res) => {
+app.get('/api/profile', (req, res) => {
   if (req.isAuthenticated()) {
       res.json({ success: true, user: req.user });
   } else {
@@ -89,7 +89,7 @@ app.get('/profile', (req, res) => {
 passport.use(new GoogleStrategy({
   clientID: process.env.clientid,
   clientSecret: process.env.clientsecret,
-  callbackURL: 'http://localhost:5000/auth/google/callback'
+  callbackURL: process.env.url+'/api/auth/google/callback'
 }, (accessToken, refreshToken, profile, done) => {
   const googleId = profile.id;
   const name = profile.displayName;
@@ -131,7 +131,7 @@ app.get('/', (req, res) => {
   
   res.send('Hello World from Express.js!');
 });
-app.get('/product_list', (req, res) => {
+app.get('/api/product_list', (req, res) => {
   db.query('SELECT * FROM items', (error, results) => {
     if (error) throw error;
     console.log(results);
@@ -195,7 +195,7 @@ app.post('/addcart', (req, res) => {
     res.status(200).send({ message: 'Cart updated successfully.' });
   })
 });
-app.get('/user/cart', (req, res) => {
+app.get('/api/user/cart', (req, res) => {
   const {email } = req.query;
   db.query('SELECT * FROM cart WHERE user =?', [email],(err, result) => {
     console.log(result);
@@ -254,7 +254,7 @@ app.post("/create_order", (req, res) => {
   });
 });
 
-app.post('/admin/additem', (req, res) => {
+app.post('/api/admin/additem', (req, res) => {
   const { name, price, description,feature,feature_description,img,type } = req.body;
   console.log(req.body);
   
