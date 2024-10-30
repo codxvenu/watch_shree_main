@@ -1,0 +1,24 @@
+.item-card{
+    padding: 50px 182px;
+}
+ul li img{
+    width: 100px;
+}
+ul {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.active , img:hover{
+    filter: brightness(40%);
+ }
+ .content button{
+    padding: 8px 20px;
+    background: #131313;
+    color: white;
+    margin-top: 40px;
+ }
+ .cart-data{
+    background-color: #FCFBF4;
+ } 
+ 
