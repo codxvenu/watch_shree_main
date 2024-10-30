@@ -62,7 +62,7 @@ app.get('/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   (req, res) => {
       // Successful authentication, redirect to your desired route
-      res.redirect('http://localhost:3000/home');
+      res.redirect(process.env.url+'/home');
   }
 );
 passport.serializeUser((user, done) => {
