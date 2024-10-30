@@ -24,7 +24,7 @@ function profile() {
 
     
       function handleGoogleSignIn() {
-        window.location.href = 'http://localhost:5000/auth/google';
+        window.location.href = process.env.url'/auth/google';
     }
     
     // After redirection back, fetch user data
