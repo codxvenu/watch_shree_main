@@ -87,7 +87,7 @@ app.get('/profile', (req, res) => {
 
 
 passport.use(new GoogleStrategy({
-  clientID: '973666784927-gqdsp4vgu9p3fr2elakp7gl7m8pk59li.apps.googleusercontent.com',
+  clientID: process.env.clientid,
   clientSecret: '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',
   callbackURL: 'http://localhost:5000/auth/google/callback'
 }, (accessToken, refreshToken, profile, done) => {
