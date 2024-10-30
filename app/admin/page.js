@@ -37,7 +37,7 @@ function Admin() {
             img: img // URL of the image
         };
     
-        fetch("http://localhost:5000/admin/additem", {
+        fetch("/admin/additem", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json' // Specify JSON content type
