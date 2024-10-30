@@ -14,7 +14,7 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-const corsoptions = { origin: ['http://localhost:3000'],
+const corsoptions = { origin: process.env.url,
   credentials: true,
 };
 app.use(express.json());
