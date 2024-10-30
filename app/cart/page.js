@@ -10,7 +10,7 @@ function cartpage() {
 
     useEffect(()=>{
       const email  = localStorage.getItem('userEmail');
-      fetch(`/api/user/cart?email=${email}` )
+      fetch(`http://localhost:5000/user/cart?email=${email}` )
       .then((res) => res.json())
       .then((data) => {
           setData(data);
