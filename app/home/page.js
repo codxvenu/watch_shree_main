@@ -8,7 +8,9 @@ function Home() {
   const [data, setData] = useState([]);
   useEffect(()=>{
     fetch("/api/product_list")
-    .then((res) => res.json())
+    .then((res) => {
+      console.log(res);
+    })
     .then((data) => {
         console.log(data);
         setData(data);
