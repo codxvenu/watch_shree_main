@@ -140,7 +140,8 @@ app.get('/api/product_list', (req, res) => {
 });
 
 
-app.post('/login', (req, res) => {
+app.post('/api/login', (req, res) => {
+  
 
   const { email, password } = req.body;
   console.log(password);

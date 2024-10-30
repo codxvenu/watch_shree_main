@@ -24,11 +24,11 @@ function profile() {
 
     
       function handleGoogleSignIn() {
-        window.location.href = 'http://localhost:5000/auth/google';
+        window.location.href ='/auth/google';
     }
     
     // After redirection back, fetch user data
-    fetch('http://localhost:5000/profile', { credentials: 'include' })
+    fetch('/api/profile', { credentials: 'include' })
         .then(response => response.json())
         .then(data => {
             localStorage.setItem('userEmail', data.email); // Save email in localStorage
@@ -39,7 +39,7 @@ function profile() {
         event.preventDefault();
        // Set loading state
     
-        const url =`http://localhost:5000/login`;
+        const url =`/api/login`;
         const data = {password, email };
         console.log(data);
         try {
