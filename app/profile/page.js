@@ -24,7 +24,7 @@ function profile() {
 
     
       function handleGoogleSignIn() {
-        window.location.href = process.env.url+'/auth/google';
+        window.location.href ='/auth/google';
     }
     
     // After redirection back, fetch user data
@@ -39,7 +39,7 @@ function profile() {
         event.preventDefault();
        // Set loading state
     
-        const url =`http://localhost:5000/login`;
+        const url =`/api/login`;
         const data = {password, email };
         console.log(data);
         try {
