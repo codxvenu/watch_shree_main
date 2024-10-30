@@ -15,7 +15,7 @@ function navbar() {
 
   useEffect(() => {
     // Fetch user data from the backend
-    fetch('/profile', {
+    fetch('/api/profile', {
         credentials: 'include'  // Ensures cookies are sent with the request
     })
         .then(response => response.json())
@@ -52,7 +52,7 @@ useEffect(() => {
   const fetchResults = async () => {
       setLoading(true);
       try {
-          const response = await fetch(`/search?q=${query}`);
+          const response = await fetch(`/api/search?q=${query}`);
           const data = await response.json();
           setResults(data);
       } catch (error) {

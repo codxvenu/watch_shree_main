@@ -7,7 +7,7 @@ import { useRouter } from 'next/navigation';
 function Home() {
   const [data, setData] = useState([]);
   useEffect(()=>{
-    fetch("/product_list")
+    fetch("/api/product_list")
     .then((res) => res.json())
     .then((data) => {
         console.log(data);
@@ -20,7 +20,7 @@ function Home() {
     const selectedItem = data.find((item) => item.id === id);
     localStorage.setItem("item", JSON.stringify(selectedItem));
     if (selectedItem) {
-      router.push("/product");
+      router.push("/api/product");
     } else {
       console.error("Item not found for id:", id);
     }
