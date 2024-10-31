@@ -24,7 +24,7 @@ function profile() {
 
     
       function handleGoogleSignIn() {
-        window.location.href ='/auth/google';
+        window.location.href ='/api/auth/google';
     }
     
     // After redirection back, fetch user data
