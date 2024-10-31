@@ -53,13 +53,13 @@ db.on('error', (err) => {
 
 handleDisconnect();
 
-app.get('/auth/google',
+app.get('/api/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
 // Google OAuth callback route
 app.get('/api/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login' }),
+  passport.authenticate('google', { failureRedirect: '/api/login' }),
   (req, res) => {
       // Successful authentication, redirect to your desired route
       res.redirect(process.env.url+'/home');
