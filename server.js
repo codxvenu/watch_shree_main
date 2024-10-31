@@ -6,12 +6,21 @@ const cors = require('cors');
 const passport = require('passport');
 const session = require('express-session');
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const MySQLStore = require('express-mysql-session')(session);
+const sessionStore = new MySQLStore({
+  host: 'server759.iseencloud.net',
+  user: 'nocash_store',
+  password: 'nocash_store',
+  database: 'nocash_store',
+});
 
 app.use(session({
   secret: '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',
   resave: false,
   saveUninitialized: true,
+  store: sessionStore, // Use MySQL session store
 }));
+
 app.use(passport.initialize());
 app.use(passport.session());
 const corsoptions = { origin: process.env.url,
@@ -19,27 +28,7 @@ const corsoptions = { origin: process.env.url,
 };
 app.use(express.json());
 app.use(cors(corsoptions));
-const db = mysql.createPool({
-  connectionLimit: 10,
-  host: 'server759.iseencloud.net',
-  user: 'nocash_store',
-  password: 'nocash_store',
-  database: 'nocash_store',
-  port: 3306,
-  connectTimeout: 30000 // Increase timeout to 30 seconds
-});
 
-
-const handleDisconnect = () => {
-db.getConnection((err, connection) => {
-  if (err) {
-    console.error('Error connecting to MySQL:', err);
-    setTimeout(handleDisconnect, 2000); // Attempt to reconnect after 2 seconds
-  } else {
-    console.log('Connected to MySQL database...');
-    connection.release();
-  }
-});
 
 db.on('error', (err) => {
   console.error('MySQL error:', err);
@@ -49,17 +38,29 @@ db.on('error', (err) => {
     throw err;
   }
 });
+
+const handleDisconnect = () => {
+  db.getConnection((err, connection) => {
+    if (err) {
+      console.error('Error connecting to MySQL:', err);
+      setTimeout(handleDisconnect, 2000); // Attempt to reconnect after 2 seconds
+    } else {
+      console.log('Connected to MySQL database...');
+      connection.release();
+    }
+  });
 };
 
 handleDisconnect();
 
-app.get('/auth/google',
+
+app.get('/api/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
 // Google OAuth callback route
-app.get('/auth/google/callback',
-  passport.authenticate('google', { failureRedirect: '/login' }),
+app.get('/api/auth/google/callback',
+  passport.authenticate('google', { failureRedirect: '/api/login' }),
   (req, res) => {
       // Successful authentication, redirect to your desired route
       res.redirect(process.env.url+'/home');
@@ -89,7 +90,7 @@ app.get('/api/profile', (req, res) => {
 passport.use(new GoogleStrategy({
   clientID: process.env.clientid,
   clientSecret: process.env.clientsecret,
-  callbackURL: process.env.url+'/api/auth/google/callback'
+  callbackURL: process.env.url+'api/auth/google/callback'
 }, (accessToken, refreshToken, profile, done) => {
   const googleId = profile.id;
   const name = profile.displayName;
