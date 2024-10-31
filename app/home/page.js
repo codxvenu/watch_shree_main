@@ -182,7 +182,7 @@ function Home() {
 <hr className='text-black border-t-1 border-gray-950 w-1/4'/>
           </span>
           <div className="cardgroup flex gap-5 flex-row overflow-auto scrollbar-hide py-2">
-            {data.filter(item => item.type === "Smart").map((content) => (
+            {data.filter(item => item.type === "smart").map((content) => (
               <div
                 key={content.id} 
                 className="relative flex flex-col text-gray-700 bg-white shadow-md bg-clip-border rounded-xl w-72 flex-shrink-0 cursor-pointer" 
