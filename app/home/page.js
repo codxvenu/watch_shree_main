@@ -13,7 +13,21 @@ function Home() {
     })
     .then((data) => {
         console.log(data);
-        setData(data);
+        setData(data);useEffect(() => {
+          fetch("/api/product_list")
+          .then((res) => {
+              console.log(res); // Logs the response object
+              return res.json(); // Convert response to JSON
+          })
+          .then((data) => {
+              console.log(data); // Logs the actual data from the response
+              setData(data); // Update state with the fetched data
+          })
+          .catch((error) => {
+              console.error("Error fetching data:", error); // Handle any errors
+          });
+      }, []);
+      
     })
 },[]);
   const router = useRouter();
