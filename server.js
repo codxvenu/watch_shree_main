@@ -58,7 +58,7 @@ app.get('/auth/google',
 );
 
 // Google OAuth callback route
-app.get('/auth/google/callback',
+app.get('/api/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/login' }),
   (req, res) => {
       // Successful authentication, redirect to your desired route
