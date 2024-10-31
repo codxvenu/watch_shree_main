@@ -6,30 +6,21 @@ import { useRouter } from 'next/navigation';
 
 function Home() {
   const [data, setData] = useState([]);
-  useEffect(()=>{
+  useEffect(() => {
     fetch("/api/product_list")
     .then((res) => {
-      console.log(res);
+        console.log(res); // Logs the response object
+        return res.json(); // Convert response to JSON
     })
     .then((data) => {
-        console.log(data);
-        setData(data);useEffect(() => {
-          fetch("/api/product_list")
-          .then((res) => {
-              console.log(res); // Logs the response object
-              return res.json(); // Convert response to JSON
-          })
-          .then((data) => {
-              console.log(data); // Logs the actual data from the response
-              setData(data); // Update state with the fetched data
-          })
-          .catch((error) => {
-              console.error("Error fetching data:", error); // Handle any errors
-          });
-      }, []);
-      
+        console.log(data); // Logs the actual data from the response
+        setData(data); // Update state with the fetched data
     })
-},[]);
+    .catch((error) => {
+        console.error("Error fetching data:", error); // Handle any errors
+    });
+}, []);
+
   const router = useRouter();
 
   const handleInfo = (id) => {
