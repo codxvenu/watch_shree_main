@@ -53,12 +53,10 @@ const handleDisconnect = () => {
 
 handleDisconnect();
 
-
 app.get('/api/auth/google',
   passport.authenticate('google', { scope: ['profile', 'email'] })
 );
 
-// Google OAuth callback route
 app.get('/api/auth/google/callback',
   passport.authenticate('google', { failureRedirect: '/api/login' }),
   (req, res) => {

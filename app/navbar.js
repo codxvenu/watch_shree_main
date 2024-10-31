@@ -18,7 +18,9 @@ function navbar() {
     fetch('/api/profile', {
         credentials: 'include'  // Ensures cookies are sent with the request
     })
-        .then(response => response.json())
+        .then(response => {
+           console.log(response);
+        }) 
         .then(data => {
             if (data.success) {
                 setUser(data.user);       // Set user data if authenticated
