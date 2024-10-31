@@ -44,7 +44,7 @@ function Home() {
         <a className='p-4'><img src="https://images.unsplash.com/photo-1542496658-e33a6d0d50f6?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" className='rounded-full bg-black h-[120px] w-[120px]' /></a>
       
       </div>
-      {!data.length===0 &&(
+      {data.length>0 &&(
 
      
       <section className='p-5'>
