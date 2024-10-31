@@ -29,6 +29,16 @@ const corsoptions = { origin: process.env.url,
 app.use(express.json());
 app.use(cors(corsoptions));
 
+const db = mysql.createPool({
+  connectionLimit: 10,
+  host: 'server759.iseencloud.net',
+  user: 'nocash_store',
+  password: 'nocash_store',
+  database: 'nocash_store',
+  port: 3306,
+  connectTimeout: 30000,
+  acquireTimeout: 30000, // Time to wait for an available connection
+});
 
 db.on('error', (err) => {
   console.error('MySQL error:', err);
